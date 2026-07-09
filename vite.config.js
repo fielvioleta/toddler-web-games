@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: './',
+  base: '/',
   server: {
     host: true,
     port: 5173,
@@ -35,7 +35,7 @@ export default defineConfig({
         background_color: '#FFF8E7',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: './',
+        start_url: '/',
         icons: [
           {
             src: 'icons/icon-192.png',

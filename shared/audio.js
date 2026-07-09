@@ -82,7 +82,16 @@ let animalSoundsReady = null
 
 function resolveClipSrc(clip) {
   if (clip.url) return clip.url
-  if (clip.file) return `${import.meta.env.BASE_URL}${clip.file}`
+  if (clip.file) {
+    const path = clip.file.replace(/^\//, '')
+    const base = import.meta.env.BASE_URL
+    // Always resolve from site root (fixes /games/animal-sounds/ loading /sounds/...)
+    if (base === './' || base === '/') {
+      return `/${path}`
+    }
+    const root = base.endsWith('/') ? base : `${base}/`
+    return `${root}${path}`
+  }
   return ''
 }
 

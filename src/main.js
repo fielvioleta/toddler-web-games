@@ -5,13 +5,11 @@ import { bindTap, preventDoubleTapZoom } from '../shared/touch.js'
 preventDoubleTapZoom()
 loadMutePreference()
 
-const base = import.meta.env.BASE_URL
-
 const games = [
-  { href: `${base}games/animal-sounds/`, emoji: '🐱', label: 'Animals', color: '#FFE8D6' },
-  { href: `${base}games/bubble-pop/`, emoji: '🫧', label: 'Bubbles', color: '#DFF6FF' },
-  { href: `${base}games/color-match/`, emoji: '🔴', label: 'Colors', color: '#FFE0E0' },
-  { href: `${base}games/count-with-me/`, emoji: '⭐', label: 'Count', color: '#FFF3BF' },
+  { href: '/games/animal-sounds/', emoji: '🐱', label: 'Animals', color: '#FFE8D6' },
+  { href: '/games/bubble-pop/', emoji: '🫧', label: 'Bubbles', color: '#DFF6FF' },
+  { href: '/games/color-match/', emoji: '🔴', label: 'Colors', color: '#FFE0E0' },
+  { href: '/games/count-with-me/', emoji: '⭐', label: 'Count', color: '#FFF3BF' },
 ]
 
 const app = document.getElementById('app')

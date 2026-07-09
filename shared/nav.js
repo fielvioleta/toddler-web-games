@@ -25,7 +25,7 @@ export function setupGameShell({ title, content }) {
   updateMuteButton(muteBtn)
 
   bindTap(homeBtn, () => {
-    window.location.href = import.meta.env.BASE_URL
+    window.location.href = '/'
   })
 
   bindTap(muteBtn, () => {
