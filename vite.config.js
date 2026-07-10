@@ -1,6 +1,21 @@
 import { resolve } from 'path'
+import { readdirSync, existsSync } from 'fs'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+
+function gameInputs(rootDir) {
+  const gamesDir = resolve(rootDir, 'games')
+  const inputs = { main: resolve(rootDir, 'index.html') }
+
+  for (const dir of readdirSync(gamesDir)) {
+    const htmlPath = resolve(gamesDir, dir, 'index.html')
+    if (!existsSync(htmlPath)) continue
+    const key = dir.replace(/-([a-z])/g, (_, c) => c.toUpperCase())
+    inputs[key] = htmlPath
+  }
+
+  return inputs
+}
 
 export default defineConfig({
   base: '/',
@@ -14,14 +29,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        animalSounds: resolve(__dirname, 'games/animal-sounds/index.html'),
-        bubblePop: resolve(__dirname, 'games/bubble-pop/index.html'),
-        colorMatch: resolve(__dirname, 'games/color-match/index.html'),
-        countWithMe: resolve(__dirname, 'games/count-with-me/index.html'),
-        hillClimb: resolve(__dirname, 'games/hill-climb/index.html'),
-      },
+      input: gameInputs(process.cwd()),
     },
   },
   plugins: [

@@ -38,6 +38,10 @@ body {
   overflow: hidden;
 }
 
+#app:has(.launcher-scroll) {
+  overflow: hidden;
+}
+
 .app-shell {
   height: 100%;
   max-height: 100dvh;
@@ -111,8 +115,14 @@ body {
   padding: 0.75rem 1rem 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.launcher-scroll {
+  touch-action: pan-y;
 }
 
 .launcher-header {
@@ -172,9 +182,258 @@ body {
 }
 
 .game-tile-label {
-  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-size: clamp(0.9rem, 3vw, 1.15rem);
   font-weight: 800;
   color: #2d3436;
+}
+
+.bounce {
+  animation: animalBounce 0.45s ease;
+}
+
+/* Shared canvas games */
+.canvas-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 720px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.08);
+  touch-action: none;
+  cursor: pointer;
+}
+
+.canvas-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* Splash Paint */
+.splash-board {
+  width: 100%;
+  height: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.splash-canvas {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+  touch-action: none;
+}
+
+.paint-splat {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.85;
+  pointer-events: none;
+  animation: splatIn 0.2s ease;
+}
+
+@keyframes splatIn {
+  from { transform: scale(0.3); opacity: 0; }
+  to { transform: scale(1); opacity: 0.85; }
+}
+
+.splash-clear-btn {
+  min-height: 64px;
+  border: none;
+  border-radius: 20px;
+  background: #6c63ff;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 800;
+  box-shadow: 0 4px 0 #4f46c8;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Pop Up Friends */
+.popup-board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: min(480px, 100%);
+}
+
+.popup-hole {
+  aspect-ratio: 1;
+  min-height: 100px;
+  background: linear-gradient(180deg, #8B6914 0%, #5C4033 100%);
+  border-radius: 50% 50% 20% 20%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.popup-friend {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: transparent;
+  font-size: clamp(3rem, 12vw, 4.5rem);
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Peek-a-Boo */
+.peek-board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.peek-scene {
+  width: min(320px, 80vw);
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #FFE8D6, #FFD6E8);
+  box-shadow: 0 12px 32px rgba(108, 99, 255, 0.2);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.peek-face,
+.peek-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(5rem, 20vw, 8rem);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.peek-face {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.peek-face.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.peek-cover.hidden {
+  opacity: 0;
+  transform: scale(1.3);
+  pointer-events: none;
+}
+
+/* Feed the Pet */
+.feed-board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feed-pet {
+  font-size: clamp(6rem, 22vw, 9rem);
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.feed-food-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.feed-food-btn {
+  width: 88px;
+  height: 88px;
+  min-width: 80px;
+  min-height: 80px;
+  border: none;
+  border-radius: 24px;
+  background: #fff;
+  font-size: 2.75rem;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.feed-fly {
+  position: fixed;
+  font-size: 2.5rem;
+  pointer-events: none;
+  z-index: 100;
+  transition: all 0.45s ease;
+  transform: translate(-50%, -50%);
+}
+
+/* Drum Tap */
+.drum-board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drum-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  width: min(400px, 100%);
+}
+
+.drum-pad {
+  aspect-ratio: 1;
+  min-height: 120px;
+  border: none;
+  border-radius: 28px;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transition: transform 0.1s ease;
+}
+
+.drum-pad.hit {
+  transform: scale(0.92) translateY(4px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.drum-emoji {
+  font-size: 2rem;
+}
+
+.drum-label {
+  font-size: 2.5rem;
 }
 
 /* Animal Sounds */
@@ -506,7 +765,19 @@ body {
   }
 
   .game-grid {
-    gap: 0.65rem;
+    gap: 0.55rem;
+  }
+
+  .game-tile {
+    min-height: 100px;
+  }
+
+  .game-tile-emoji {
+    font-size: clamp(2.25rem, 10vw, 3.5rem);
+  }
+
+  .game-tile-label {
+    font-size: 0.85rem;
   }
 
   .animal-grid {

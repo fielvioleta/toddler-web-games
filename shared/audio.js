@@ -67,6 +67,43 @@ export function playPop() {
   playTone({ frequency: 780, duration: 0.06, type: 'sine', volume: 0.2, delay: 0.04 })
 }
 
+export function playHonk() {
+  playTone({ frequency: 180, duration: 0.15, type: 'square', volume: 0.2 })
+  playTone({ frequency: 220, duration: 0.2, type: 'square', volume: 0.18, delay: 0.12 })
+}
+
+export function playJump() {
+  playTone({ frequency: 300, duration: 0.1, type: 'sine', volume: 0.25 })
+  playTone({ frequency: 500, duration: 0.15, type: 'sine', volume: 0.2, delay: 0.08 })
+}
+
+export function playSplash() {
+  playTone({ frequency: 400, duration: 0.06, type: 'triangle', volume: 0.2 })
+  playTone({ frequency: 600, duration: 0.08, type: 'sine', volume: 0.15, delay: 0.04 })
+}
+
+export function playDrum(pitch = 200) {
+  playTone({ frequency: pitch, duration: 0.12, type: 'triangle', volume: 0.3 })
+  playTone({ frequency: pitch * 0.5, duration: 0.08, type: 'sine', volume: 0.15, delay: 0.02 })
+}
+
+export function playChomp() {
+  playTone({ frequency: 240, duration: 0.08, type: 'sawtooth', volume: 0.2 })
+  playTone({ frequency: 180, duration: 0.1, type: 'sawtooth', volume: 0.18, delay: 0.1 })
+}
+
+export function playPeekaboo() {
+  if (muted) return
+  if ('speechSynthesis' in window) {
+    const u = new SpeechSynthesisUtterance('Peek-a-boo!')
+    u.rate = 0.9
+    u.pitch = 1.3
+    window.speechSynthesis.speak(u)
+    return
+  }
+  playSuccess()
+}
+
 export function playBoost() {
   playTone({ frequency: 120, duration: 0.08, type: 'sawtooth', volume: 0.18 })
   playTone({ frequency: 200, duration: 0.1, type: 'triangle', volume: 0.22, delay: 0.05 })

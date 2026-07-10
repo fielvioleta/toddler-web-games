@@ -6,16 +6,25 @@ preventDoubleTapZoom()
 loadMutePreference()
 
 const games = [
+  { href: '/games/hill-climb/', emoji: '🚗', label: 'Hill Climb', color: '#D6F5DA' },
+  { href: '/games/jump-jump/', emoji: '🦘', label: 'Jump', color: '#E8FFD6' },
+  { href: '/games/rocket-tap/', emoji: '🚀', label: 'Rocket', color: '#D6E8FF' },
+  { href: '/games/train-choo-choo/', emoji: '🚂', label: 'Train', color: '#FFE8D6' },
+  { href: '/games/fish-swim/', emoji: '🐠', label: 'Fish', color: '#D6F0FF' },
+  { href: '/games/pop-up-friends/', emoji: '🐸', label: 'Pop Up', color: '#D6F5DA' },
+  { href: '/games/splash-paint/', emoji: '🎨', label: 'Paint', color: '#FFE0F0' },
+  { href: '/games/drum-tap/', emoji: '🥁', label: 'Drums', color: '#FFF3BF' },
+  { href: '/games/feed-the-pet/', emoji: '🐶', label: 'Feed Pet', color: '#FFE8D6' },
+  { href: '/games/peek-a-boo/', emoji: '🙈', label: 'Peek-a-Boo', color: '#EDE5FF' },
   { href: '/games/animal-sounds/', emoji: '🐱', label: 'Animals', color: '#FFE8D6' },
   { href: '/games/bubble-pop/', emoji: '🫧', label: 'Bubbles', color: '#DFF6FF' },
   { href: '/games/color-match/', emoji: '🔴', label: 'Colors', color: '#FFE0E0' },
   { href: '/games/count-with-me/', emoji: '⭐', label: 'Count', color: '#FFF3BF' },
-  { href: '/games/hill-climb/', emoji: '🚗', label: 'Hill Climb', color: '#D6F5DA' },
 ]
 
 const app = document.getElementById('app')
 app.innerHTML = `
-  <div class="launcher">
+  <div class="launcher launcher-scroll">
     <header class="launcher-header">
       <p>Tap a game!</p>
       <h1>🎮 Play & Learn</h1>

@@ -84,6 +84,7 @@ export function preventDoubleTapZoom() {
   document.addEventListener(
     'touchmove',
     (event) => {
+      if (event.target.closest('.launcher-scroll')) return
       event.preventDefault()
     },
     { passive: false },
