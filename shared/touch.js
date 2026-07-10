@@ -65,7 +65,23 @@ function getPoint(event) {
   return null
 }
 
+export function installAppViewport() {
+  const set = () => {
+    const h = window.visualViewport?.height ?? window.innerHeight
+    document.documentElement.style.setProperty('--app-height', `${Math.round(h)}px`)
+  }
+
+  set()
+  window.visualViewport?.addEventListener('resize', set)
+  window.addEventListener('resize', set)
+  window.addEventListener('orientationchange', () => {
+    setTimeout(set, 100)
+  })
+}
+
 export function preventDoubleTapZoom() {
+  installAppViewport()
+
   let lastTouchEnd = 0
 
   document.addEventListener(

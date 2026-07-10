@@ -38,7 +38,7 @@ let hintVisible = true
 let animId = 0
 
 function groundY(x) {
-  const base = height * 0.72
+  const base = height * 0.8
   return (
     base +
     Math.sin(x * 0.007) * height * 0.1 +
@@ -54,8 +54,8 @@ function groundSlope(x) {
 
 function resize() {
   const rect = stage.getBoundingClientRect()
-  width = Math.floor(rect.width)
-  height = Math.floor(rect.height)
+  width = Math.max(1, Math.floor(rect.width))
+  height = Math.max(1, Math.floor(rect.height))
   canvas.width = width
   canvas.height = height
 }
@@ -142,7 +142,8 @@ function drawMilestoneMarkers() {
     const py = groundY(mx)
     ctx.font = `${Math.floor(height * 0.06)}px serif`
     ctx.textAlign = 'center'
-    ctx.fillText('🚩', px, py - height * 0.08)
+    ctx.textBaseline = 'bottom'
+    ctx.fillText('🚩', px, py - 2)
   }
 }
 
@@ -190,3 +191,8 @@ resize()
 loop()
 
 window.addEventListener('resize', resize)
+
+if (typeof ResizeObserver !== 'undefined') {
+  const ro = new ResizeObserver(() => resize())
+  ro.observe(stage)
+}
