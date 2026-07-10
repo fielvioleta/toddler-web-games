@@ -10,6 +10,7 @@ const games = [
   { href: '/games/bubble-pop/', emoji: '🫧', label: 'Bubbles', color: '#DFF6FF' },
   { href: '/games/color-match/', emoji: '🔴', label: 'Colors', color: '#FFE0E0' },
   { href: '/games/count-with-me/', emoji: '⭐', label: 'Count', color: '#FFF3BF' },
+  { href: '/games/hill-climb/', emoji: '🚗', label: 'Hill Climb', color: '#D6F5DA' },
 ]
 
 const app = document.getElementById('app')

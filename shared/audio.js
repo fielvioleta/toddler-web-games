@@ -67,6 +67,12 @@ export function playPop() {
   playTone({ frequency: 780, duration: 0.06, type: 'sine', volume: 0.2, delay: 0.04 })
 }
 
+export function playBoost() {
+  playTone({ frequency: 120, duration: 0.08, type: 'sawtooth', volume: 0.18 })
+  playTone({ frequency: 200, duration: 0.1, type: 'triangle', volume: 0.22, delay: 0.05 })
+  playTone({ frequency: 280, duration: 0.12, type: 'sine', volume: 0.15, delay: 0.1 })
+}
+
 export function playSuccess() {
   playSequence([
     { frequency: 523, duration: 0.12, volume: 0.22 },

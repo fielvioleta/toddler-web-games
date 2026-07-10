@@ -20,6 +20,7 @@ export default defineConfig({
         bubblePop: resolve(__dirname, 'games/bubble-pop/index.html'),
         colorMatch: resolve(__dirname, 'games/color-match/index.html'),
         countWithMe: resolve(__dirname, 'games/count-with-me/index.html'),
+        hillClimb: resolve(__dirname, 'games/hill-climb/index.html'),
       },
     },
   },
