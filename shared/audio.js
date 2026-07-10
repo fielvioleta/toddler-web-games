@@ -87,6 +87,12 @@ export function playDrum(pitch = 200) {
   playTone({ frequency: pitch * 0.5, duration: 0.08, type: 'sine', volume: 0.15, delay: 0.02 })
 }
 
+export function playHammer() {
+  playTone({ frequency: 85, duration: 0.07, type: 'square', volume: 0.22 })
+  playTone({ frequency: 55, duration: 0.12, type: 'triangle', volume: 0.28, delay: 0.02 })
+  playTone({ frequency: 130, duration: 0.05, type: 'sine', volume: 0.12, delay: 0.05 })
+}
+
 export function playChomp() {
   playTone({ frequency: 240, duration: 0.08, type: 'sawtooth', volume: 0.2 })
   playTone({ frequency: 180, duration: 0.1, type: 'sawtooth', volume: 0.18, delay: 0.1 })

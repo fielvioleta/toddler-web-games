@@ -110,7 +110,8 @@ body {
 .game-area > .canvas-stage,
 .game-area > .hill-climb-stage,
 .game-area > .bubble-stage,
-.game-area > .splash-board {
+.game-area > .splash-board,
+.game-area > .hammer-bench-board {
   align-self: stretch;
   flex: 1 1 auto;
   min-height: 0;
@@ -488,6 +489,103 @@ body {
   z-index: 100;
   transition: all 0.45s ease;
   transform: translate(-50%, -50%);
+}
+
+/* Hammer Bench */
+.hammer-bench-board {
+  width: 100%;
+  height: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.hammer-bench-table {
+  width: min(100%, 520px);
+  padding: 1.5rem 1rem 1rem;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #d4a574 0%, #b8844f 100%);
+  box-shadow:
+    0 10px 0 #8f6235,
+    inset 0 4px 12px rgba(255, 255, 255, 0.25);
+}
+
+.hammer-peg-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.5rem, 3vw, 1rem);
+  min-height: 120px;
+  padding-bottom: 0.25rem;
+}
+
+.hammer-peg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.hammer-peg-head {
+  width: clamp(40px, 11vw, 52px);
+  height: clamp(40px, 11vw, 52px);
+  border-radius: 50%;
+  background: var(--peg-color);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.18);
+  transition: transform 0.18s ease;
+}
+
+.hammer-peg-body {
+  width: clamp(14px, 4vw, 18px);
+  height: clamp(44px, 12vw, 56px);
+  margin-top: -4px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #c9a06c 0%, #e2c08f 50%, #c9a06c 100%);
+  transition: height 0.18s ease;
+}
+
+.hammer-peg.hammered .hammer-peg-head {
+  transform: translateY(clamp(30px, 9vw, 40px));
+}
+
+.hammer-peg.hammered .hammer-peg-body {
+  height: clamp(10px, 3vw, 14px);
+}
+
+.hammer-peg:active:not(.hammered) .hammer-peg-head {
+  transform: translateY(4px);
+}
+
+.hammer-tool {
+  font-size: clamp(3.5rem, 14vw, 5rem);
+  line-height: 1;
+  transform-origin: bottom right;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.15));
+}
+
+.hammer-tool.swing {
+  animation: hammerSwing 0.28s ease;
+}
+
+@keyframes hammerSwing {
+  0% { transform: rotate(0deg) translateY(0); }
+  35% { transform: rotate(-52deg) translateY(8px) scale(1.08); }
+  70% { transform: rotate(-18deg) translateY(2px); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+
+.hammer-hint {
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  font-weight: 800;
+  color: #6c63ff;
+  text-align: center;
 }
 
 /* Drum Tap */

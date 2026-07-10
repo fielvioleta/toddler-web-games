@@ -6,6 +6,7 @@ preventDoubleTapZoom()
 loadMutePreference()
 
 const games = [
+  { href: '/games/hammer-bench/', emoji: '🔨', label: 'Hammer', color: '#FFE0C2' },
   { href: '/games/hill-climb/', emoji: '🚗', label: 'Hill Climb', color: '#D6F5DA' },
   { href: '/games/jump-jump/', emoji: '🦘', label: 'Jump', color: '#E8FFD6' },
   { href: '/games/rocket-tap/', emoji: '🚀', label: 'Rocket', color: '#D6E8FF' },
