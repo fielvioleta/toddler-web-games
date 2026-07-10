@@ -218,7 +218,7 @@ body {
   touch-action: none;
 }
 
-/* Splash Paint */
+/* Splash Paint / Color Book */
 .splash-board {
   width: 100%;
   height: 100%;
@@ -226,6 +226,22 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.splash-page-label {
+  text-align: center;
+  font-size: clamp(1.1rem, 4vw, 1.35rem);
+  font-weight: 800;
+  color: #6c63ff;
+  flex-shrink: 0;
+}
+
+.splash-hint {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #636e72;
+  flex-shrink: 0;
 }
 
 .splash-canvas {
@@ -239,31 +255,94 @@ body {
   touch-action: none;
 }
 
-.paint-splat {
+.splash-paint-layer {
   position: absolute;
-  border-radius: 50%;
-  opacity: 0.85;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.splash-outline-layer {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
-  animation: splatIn 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes splatIn {
-  from { transform: scale(0.3); opacity: 0; }
-  to { transform: scale(1); opacity: 0.85; }
+.splash-outline-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.splash-clear-btn {
+.splash-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0.25rem 0;
+}
+
+.splash-swatch {
+  width: 52px;
+  height: 52px;
+  min-width: 48px;
+  min-height: 48px;
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.splash-swatch.selected {
+  box-shadow: 0 0 0 4px #6c63ff, 0 3px 0 rgba(0, 0, 0, 0.12);
+  transform: scale(1.08);
+}
+
+.splash-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.splash-action-btn {
   min-height: 64px;
   border: none;
   border-radius: 20px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.splash-clear-btn {
+  background: #ffffff;
+  color: #6c63ff;
+  box-shadow: 0 4px 0 #d6d0c4;
+}
+
+.splash-next-btn {
   background: #6c63ff;
   color: #fff;
-  font-family: inherit;
-  font-size: 1.1rem;
-  font-weight: 800;
   box-shadow: 0 4px 0 #4f46c8;
-  cursor: pointer;
-  flex-shrink: 0;
+}
+
+.splash-action-btn:active,
+.splash-action-btn.pressed {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #4f46c8;
+}
+
+.splash-clear-btn:active,
+.splash-clear-btn.pressed {
+  box-shadow: 0 1px 0 #d6d0c4;
 }
 
 /* Pop Up Friends */

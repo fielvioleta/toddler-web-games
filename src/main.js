@@ -12,7 +12,7 @@ const games = [
   { href: '/games/train-choo-choo/', emoji: '🚂', label: 'Train', color: '#FFE8D6' },
   { href: '/games/fish-swim/', emoji: '🐠', label: 'Fish', color: '#D6F0FF' },
   { href: '/games/pop-up-friends/', emoji: '🐸', label: 'Pop Up', color: '#D6F5DA' },
-  { href: '/games/splash-paint/', emoji: '🎨', label: 'Paint', color: '#FFE0F0' },
+  { href: '/games/splash-paint/', emoji: '🎨', label: 'Color', color: '#FFE0F0' },
   { href: '/games/drum-tap/', emoji: '🥁', label: 'Drums', color: '#FFF3BF' },
   { href: '/games/feed-the-pet/', emoji: '🐶', label: 'Feed Pet', color: '#FFE8D6' },
   { href: '/games/peek-a-boo/', emoji: '🙈', label: 'Peek-a-Boo', color: '#EDE5FF' },

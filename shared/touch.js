@@ -85,6 +85,7 @@ export function preventDoubleTapZoom() {
     'touchmove',
     (event) => {
       if (event.target.closest('.launcher-scroll')) return
+      if (event.target.closest('.splash-paint-layer')) return
       event.preventDefault()
     },
     { passive: false },
