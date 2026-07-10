@@ -8,24 +8,42 @@
 }
 
 html {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
   touch-action: manipulation;
 }
 
 body {
   margin: 0;
-  min-height: 100dvh;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
   font-family: 'Nunito', system-ui, sans-serif;
   background: linear-gradient(160deg, #fff8e7 0%, #e8f4ff 100%);
   color: #2d3436;
-  overflow-x: hidden;
+  overflow: hidden;
+  overscroll-behavior: none;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+#app {
+  height: 100%;
+  max-height: 100dvh;
+  overflow: hidden;
 }
 
 .app-shell {
-  min-height: 100dvh;
+  height: 100%;
+  max-height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
@@ -75,23 +93,32 @@ body {
 
 .game-area {
   flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.75rem;
   position: relative;
+  overflow: hidden;
 }
 
 /* Launcher */
 .launcher {
   width: min(720px, 100%);
+  height: 100%;
+  max-height: 100dvh;
   margin: 0 auto;
-  padding: 1rem 1rem 2rem;
+  padding: 0.75rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .launcher-header {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 
 .launcher-header h1 {
@@ -110,11 +137,14 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  flex: 1;
+  min-height: 0;
+  align-content: center;
 }
 
 .game-tile {
   aspect-ratio: 1;
-  min-height: 140px;
+  min-height: 0;
   border: none;
   border-radius: 28px;
   background: #ffffff;
@@ -200,7 +230,8 @@ body {
 .bubble-stage {
   position: relative;
   width: 100%;
-  height: min(78dvh, 680px);
+  height: 100%;
+  max-height: min(100%, 680px);
   max-width: 720px;
   border-radius: 32px;
   background: linear-gradient(180deg, #dff6ff 0%, #b8e8ff 100%);
@@ -339,7 +370,12 @@ body {
 /* Count with Me */
 .count-board {
   width: min(520px, 100%);
+  max-height: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
 .count-objects {
@@ -347,9 +383,12 @@ body {
   flex-wrap: wrap;
   gap: 1.25rem;
   justify-content: center;
-  min-height: 220px;
   align-items: center;
-  margin: 1.5rem 0;
+  margin: 0.75rem 0;
+  flex: 1;
+  min-height: 0;
+  max-height: 55dvh;
+  overflow: hidden;
 }
 
 .count-item {
@@ -410,12 +449,56 @@ body {
 
 /* Tablet / touch optimizations */
 @media (orientation: portrait) and (max-width: 768px) {
+  .top-bar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .game-area {
+    padding: 0.5rem;
+  }
+
+  .launcher {
+    padding: 0.5rem 0.75rem 0.75rem;
+  }
+
+  .launcher-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .launcher-header h1 {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+  }
+
   .game-grid {
-    gap: 0.85rem;
+    gap: 0.65rem;
   }
 
   .animal-grid {
+    gap: 0.75rem;
+  }
+
+  .color-match-board {
+    gap: 1.25rem;
+  }
+
+  .color-row {
     gap: 1rem;
+  }
+
+  .count-display {
+    font-size: clamp(2.25rem, 10vw, 3.5rem);
+  }
+
+  .count-objects {
+    max-height: 50dvh;
+    gap: 0.65rem;
+  }
+
+  .next-round-btn {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    min-height: 64px;
+    font-size: 1.1rem;
   }
 }
 

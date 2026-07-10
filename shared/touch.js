@@ -67,6 +67,7 @@ function getPoint(event) {
 
 export function preventDoubleTapZoom() {
   let lastTouchEnd = 0
+
   document.addEventListener(
     'touchend',
     (event) => {
@@ -75,6 +76,26 @@ export function preventDoubleTapZoom() {
         event.preventDefault()
       }
       lastTouchEnd = now
+    },
+    { passive: false },
+  )
+
+  // Stop page scroll / rubber-band when tapping and dragging on mobile
+  document.addEventListener(
+    'touchmove',
+    (event) => {
+      event.preventDefault()
+    },
+    { passive: false },
+  )
+
+  // Prevent accidental scroll when touch starts outside interactive elements
+  document.addEventListener(
+    'touchstart',
+    (event) => {
+      if (event.touches.length > 1) {
+        event.preventDefault()
+      }
     },
     { passive: false },
   )
